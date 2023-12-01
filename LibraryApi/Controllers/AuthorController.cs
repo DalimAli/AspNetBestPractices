@@ -1,6 +1,7 @@
 ﻿using LibraryApi.Context;
 using LibraryApi.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 
 namespace LibraryApi.Controllers
@@ -24,6 +25,7 @@ namespace LibraryApi.Controllers
         }
 
         [HttpPost("add")]
+        [EnableRateLimiting("fixed")]
         public async Task<IActionResult> Add([FromBody] Author author)
         {
             await context.Authors.AddAsync(author);

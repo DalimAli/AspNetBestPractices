@@ -1,10 +1,8 @@
 using LibraryApi.Context;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace LibraryApi
 {
@@ -32,7 +30,15 @@ namespace LibraryApi
                 });
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddRateLimiter(o => o
+            .AddFixedWindowLimiter(policyName: "fixed", options =>
+            {
+                options.PermitLimit = 1;
+                options.Window = TimeSpan.FromSeconds(50);
+            }));
+
             var app = builder.Build();
+            app.UseRateLimiter();
 
             // Configure the HTTP request pipeline.
             var title = "Polly and Refit";
