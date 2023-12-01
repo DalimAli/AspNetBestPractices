@@ -1,3 +1,11 @@
+using LibraryApi.Context;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 namespace LibraryApi
 {
     public class Program
@@ -7,10 +15,33 @@ namespace LibraryApi
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            var services = builder.Services;
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<ApplicationDbContext>(options =>
+            {
+                options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+                options.LogTo(x => Console.WriteLine(x));
+                options.UseSqlServer(connectionString);
+            });
 
-            builder.Services.AddControllers();
+            builder.Services.AddControllers()
+                .AddNewtonsoftJson(options =>
+                {
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                    options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                });
+            builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
+
+            // Configure the HTTP request pipeline.
+            var title = "Polly and Refit";
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.DocumentTitle = $"{title}";
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", $"{title} documentation");
+            });
 
             // Configure the HTTP request pipeline.
 
