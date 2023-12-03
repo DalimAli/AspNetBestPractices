@@ -18,10 +18,18 @@ namespace LibraryApi.Controllers
         }
 
         [HttpGet("gets")]
+        [EnableRateLimiting("fixed")]
         public async Task<IActionResult> Index()
         {
-            var result = await context.Authors.ToListAsync();
-            return Ok(result);
+            try
+            {
+                var result = await context.Authors.ToListAsync();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         [HttpPost("add")]

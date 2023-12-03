@@ -34,14 +34,14 @@ namespace LibraryApi
             .AddFixedWindowLimiter(policyName: "fixed", options =>
             {
                 options.PermitLimit = 1;
-                options.Window = TimeSpan.FromSeconds(50);
+                options.Window = TimeSpan.FromSeconds(10);
             }));
 
             var app = builder.Build();
             app.UseRateLimiter();
 
             // Configure the HTTP request pipeline.
-            var title = "Polly and Refit";
+            var title = "Library API";
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
