@@ -1,4 +1,5 @@
 using LibraryApi.Context;
+using LibraryApi.Handler;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -22,22 +23,28 @@ namespace LibraryApi
                 options.UseSqlServer(connectionString);
             });
 
+            builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+
             builder.Services.AddControllers()
                 .AddNewtonsoftJson(options =>
                 {
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                     options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                 });
-            builder.Services.AddSwaggerGen();
 
             builder.Services.AddRateLimiter(o => o
             .AddFixedWindowLimiter(policyName: "fixed", options =>
             {
                 options.PermitLimit = 1;
-                options.Window = TimeSpan.FromSeconds(10);
+                options.Window = TimeSpan.FromSeconds(100);
             }));
 
+            builder.Services.AddSwaggerGen();
+
             var app = builder.Build();
+
+            app.UseExceptionHandler(opt => { });
+
             app.UseRateLimiter();
 
             // Configure the HTTP request pipeline.
@@ -53,8 +60,8 @@ namespace LibraryApi
 
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
 
+            app.UseAuthorization();
 
             app.MapControllers();
 

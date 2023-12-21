@@ -24,10 +24,10 @@ namespace RefitAndPolly.Registration
             return HttpPolicyExtensions
                 .HandleTransientHttpError()
                 .OrResult(msg => msg.StatusCode == System.Net.HttpStatusCode.Forbidden)
-                .WaitAndRetryAsync(2, retryAttempt => Func(retryAttempt));
+                .WaitAndRetryAsync(1, retryAttempt => MyFunc(retryAttempt));
         }
 
-        private static TimeSpan Func(int retryAttempt)
+        private static TimeSpan MyFunc(int retryAttempt)
         {
             Console.WriteLine($"Retring again {retryAttempt}");
             return TimeSpan.FromSeconds(Math.Pow(2, retryAttempt));
