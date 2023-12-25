@@ -38,8 +38,8 @@ namespace LibraryApi.Controllers
         public async Task<IActionResult> Add([FromBody] Author author)
         {
             await context.Authors.AddAsync(author);
-            //await context.SaveChangesAsync();
-
+            await context.SaveChangesAsync();
+            Console.WriteLine($"Sending Message to consumer");
             await _messageProducer.SendMessage(author);
             return Ok(author);
         }

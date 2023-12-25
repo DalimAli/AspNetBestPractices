@@ -1,4 +1,7 @@
-﻿using MassTransit;
+﻿using LibraryApi.Consumers;
+using LibraryApi.Entities.ViewModels;
+using MassTransit;
+using RabbitMQ.Client;
 
 namespace RefitAndPolly.Consumers
 {
@@ -6,10 +9,16 @@ namespace RefitAndPolly.Consumers
     {
         public static void RegisterCustomConsumer(this IServiceCollection services)
         {
-             
+
             services.AddMassTransit(configure =>
             {
+
                 configure.AddConsumer<AuthorConsumer>();
+                configure.AddConsumer<AuthorStatusConsumer>()
+                         .Endpoint(e => e.Name = "author-status");
+
+                configure.AddRequestClient<CheckAuthorStatus>(new Uri("exchange:author-status"));
+
                 configure.UsingRabbitMq((context, config) =>
                 {
                     config.Host("localhost", "/", _ =>
@@ -17,12 +26,25 @@ namespace RefitAndPolly.Consumers
                         _.Username("guest");
                         _.Password("guest");
                     });
+                    config.PrefetchCount = 20;
+                    config.ConcurrentMessageLimit = 10;
+
                     config.ReceiveEndpoint("author-creation-event",
-                        configureEndpoint =>
+                        endPoint =>
                         {
-                            configureEndpoint.ConfigureConsumer<AuthorConsumer>(context);
+                            endPoint.ExchangeType = ExchangeType.Fanout;
+                            endPoint.ConfigureConsumer<AuthorConsumer>(context);
                         });
+
+                    //config.ReceiveEndpoint("author-status",
+                    //    endPoint =>
+                    //    {
+                    //        endPoint.ExchangeType = ExchangeType.Fanout;
+                    //        endPoint.ConfigureConsumer<AuthorStatusConsumer>(context);
+                    //    });
+                    config.ConfigureEndpoints(context);
                 });
+
             });
         }
     }
