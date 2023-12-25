@@ -1,9 +1,14 @@
 using LibraryApi.Context;
 using LibraryApi.Handler;
+using RabbitMQ;
+using MassTransit;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using LibraryApi.Producer;
+using MassTransit.Configuration;
+using RefitAndPolly.Consumers;
 
 namespace LibraryApi
 {
@@ -15,6 +20,9 @@ namespace LibraryApi
 
             // Add services to the container.
             var services = builder.Services;
+
+            services.AddScoped<IMessageProducer, MessageProducer>();
+
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<ApplicationDbContext>(options =>
             {
@@ -36,9 +44,10 @@ namespace LibraryApi
             .AddFixedWindowLimiter(policyName: "fixed", options =>
             {
                 options.PermitLimit = 1;
-                options.Window = TimeSpan.FromSeconds(100);
+                options.Window = TimeSpan.FromSeconds(10);
             }));
 
+            builder.Services.RegisterCustomConsumer();
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();

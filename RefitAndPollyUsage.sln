@@ -5,7 +5,7 @@ VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryApi", "LibraryApi\LibraryApi.csproj", "{45FF421F-DE8B-417C-9683-27B4BC0301B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefitAndPolly", "RefitAndPolly\RefitAndPolly.csproj", "{D869302E-B04A-4129-8000-3A93D2F36DD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RefitAndPolly", "RefitAndPolly\RefitAndPolly.csproj", "{D869302E-B04A-4129-8000-3A93D2F36DD0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

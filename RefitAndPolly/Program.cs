@@ -1,6 +1,4 @@
-
 using RefitAndPolly.Registration;
-using RefitAndPolly.RetryPolicy;
 
 namespace RefitAndPolly
 {
@@ -11,12 +9,11 @@ namespace RefitAndPolly
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-
-            builder.Services.AddControllers();
+            var services = builder.Services;
+            services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.RegisterRefit();
-           // builder.Services.RegisterPolly();
+            services.AddEndpointsApiExplorer();
+            services.RegisterRefit();
 
             builder.Services.AddSwaggerGen();
 

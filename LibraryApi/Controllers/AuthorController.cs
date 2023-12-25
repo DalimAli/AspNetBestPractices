@@ -1,5 +1,6 @@
 ﻿using LibraryApi.Context;
 using LibraryApi.Models;
+using LibraryApi.Producer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
@@ -11,10 +12,11 @@ namespace LibraryApi.Controllers
     public class AuthorController : ControllerBase
     {
         private readonly ApplicationDbContext context;
-
-        public AuthorController(ApplicationDbContext context)
+        private readonly IMessageProducer _messageProducer;
+        public AuthorController(ApplicationDbContext context, IMessageProducer messageProducer)
         {
             this.context = context;
+            _messageProducer = messageProducer;
         }
 
         [HttpGet("gets")]
@@ -24,7 +26,7 @@ namespace LibraryApi.Controllers
             var result = await context.Authors.ToListAsync();
             return Ok(result);
         }
-        
+
         [HttpGet("get/{id:long}")]
         public async Task<IActionResult> Get(long id)
         {
@@ -32,11 +34,13 @@ namespace LibraryApi.Controllers
         }
 
         [HttpPost("add")]
-        [EnableRateLimiting("fixed")]
+        //[EnableRateLimiting("fixed")]
         public async Task<IActionResult> Add([FromBody] Author author)
         {
             await context.Authors.AddAsync(author);
-            await context.SaveChangesAsync();
+            //await context.SaveChangesAsync();
+
+            await _messageProducer.SendMessage(author);
             return Ok(author);
         }
     }
