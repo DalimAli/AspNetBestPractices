@@ -36,12 +36,6 @@ namespace RefitAndPolly.Consumers
                             endPoint.ConfigureConsumer<AuthorConsumer>(context);
                         });
 
-                    //config.ReceiveEndpoint("author-status",
-                    //    endPoint =>
-                    //    {
-                    //        endPoint.ExchangeType = ExchangeType.Fanout;
-                    //        endPoint.ConfigureConsumer<AuthorStatusConsumer>(context);
-                    //    });
                     config.ConfigureEndpoints(context);
                 });
 
