@@ -1,4 +1,4 @@
-﻿namespace LibraryApi.Models
+﻿namespace Library.Entity.Models
 {
     public class Audit
     {

@@ -1,4 +1,4 @@
-﻿namespace LibraryApi.Entities.ViewModels
+﻿namespace Library.Entity.ViewModels
 {
     public class AuthorNotFound
     {

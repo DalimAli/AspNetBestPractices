@@ -1,5 +1,5 @@
-﻿using LibraryApi.Consumers;
-using LibraryApi.Entities.ViewModels;
+﻿using Library.Entity.ViewModels;
+using LibraryApi.Consumers;
 using MassTransit;
 using RabbitMQ.Client;
 

@@ -1,7 +1,5 @@
-﻿using LibraryApi.Entities.ViewModels;
-using LibraryApi.Models;
+﻿using Library.Entity.ViewModels;
 using MassTransit;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibraryApi.Controllers

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace LibraryApi.Entities.ViewModels
+namespace Library.Entity.ViewModels
 {
     public class AuthorStatusResult
     {

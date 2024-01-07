@@ -1,9 +1,8 @@
-﻿using LibraryApi.Models;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Library.Entity.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
-namespace LibraryApi.Context
+namespace Library.Infrastructure.Context
 {
     public class ApplicationDbContext : DbContext
     {
@@ -12,6 +11,7 @@ namespace LibraryApi.Context
         {
 
         }
+
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
         //    optionsBuilder.

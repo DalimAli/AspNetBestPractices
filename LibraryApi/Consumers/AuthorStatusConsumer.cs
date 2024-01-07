@@ -1,6 +1,6 @@
-﻿using LibraryApi.Context;
-using LibraryApi.Entities.ViewModels;
-using LibraryApi.Models;
+﻿using Library.Entity.Models;
+using Library.Entity.ViewModels;
+using Library.Infrastructure.Context;
 using MassTransit;
 
 namespace LibraryApi.Consumers

@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace LibraryApi.Models
+namespace Library.Entity.Models
 {
-    public class Author: Audit
+    public class Book: Audit
     {
         public int Id { get; set; }
 
         [Required]
-        public string Name { get; set; } 
+        public string Name { get; set; }
     }
 }

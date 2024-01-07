@@ -1,13 +1,10 @@
-using LibraryApi.Context;
+using Library.Infrastructure.Context;
 using LibraryApi.Handler;
-using RabbitMQ;
-using MassTransit;
+using LibraryApi.Producer;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using LibraryApi.Producer;
-using MassTransit.Configuration;
 using RefitAndPolly.Consumers;
 
 namespace LibraryApi

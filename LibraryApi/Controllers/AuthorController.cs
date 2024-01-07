@@ -1,5 +1,5 @@
-﻿using LibraryApi.Context;
-using LibraryApi.Models;
+﻿using Library.Entity.Models;
+using Library.Infrastructure.Context;
 using LibraryApi.Producer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;

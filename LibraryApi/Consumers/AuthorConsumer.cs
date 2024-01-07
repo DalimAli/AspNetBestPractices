@@ -1,7 +1,5 @@
-﻿using LibraryApi.Context;
-using LibraryApi.Models;
+﻿using Library.Entity.Models;
 using MassTransit;
-using MassTransit.Transports;
 using System.Text.Json;
 
 namespace RefitAndPolly.Consumers
