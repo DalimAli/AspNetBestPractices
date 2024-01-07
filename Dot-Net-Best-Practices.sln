@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryApi", "LibraryApi\LibraryApi.csproj", "{45FF421F-DE8B-417C-9683-27B4BC0301B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Api", "LibraryApi\Library.Api.csproj", "{45FF421F-DE8B-417C-9683-27B4BC0301B9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RefitAndPolly", "RefitAndPolly\RefitAndPolly.csproj", "{D869302E-B04A-4129-8000-3A93D2F36DD0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{56751C75-BABD-4D58-859B-A93877D2B9CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Entity", "Library\Library.Entity\Library.Entity.csproj", "{FCB3FEEC-18D0-441C-AF59-7FFC2F1C9B59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Entity", "Library\Library.Entity\Library.Entity.csproj", "{FCB3FEEC-18D0-441C-AF59-7FFC2F1C9B59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Infrastructure", "Library\Library.Infrastructure\Library.Infrastructure.csproj", "{EA7EADFD-427A-4D0D-9AEB-0F26723A0D3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Infrastructure", "Library\Library.Infrastructure\Library.Infrastructure.csproj", "{EA7EADFD-427A-4D0D-9AEB-0F26723A0D3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Repository", "Library\Library.Repository\Library.Repository.csproj", "{47C5F89D-20A8-4F6E-A104-2B749ED9AFE4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Repository", "Library\Library.Repository\Library.Repository.csproj", "{47C5F89D-20A8-4F6E-A104-2B749ED9AFE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Service", "Library\Library.Service\Library.Service.csproj", "{AEC403E5-3A37-485A-8E5E-DC86FF6C166B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library.Service", "Library\Library.Service\Library.Service.csproj", "{AEC403E5-3A37-485A-8E5E-DC86FF6C166B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
